@@ -1,17 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argocd-kube-deploy
+  name: web-site-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      run: argocd-kube
+      app: web-site-deployment
   template:
     metadata:
+      name: web-site-deployment
       labels:
-        run: argocd-kube
+        app: web-site-deployment
     spec:
       containers:
-      - image: 
-        name: argocd-kube
+      - name: web-site-deployment-container
+        image: hyeonuj/mytomcat:v1.0
+        imagePullPolicy: Always
